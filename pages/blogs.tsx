@@ -1,16 +1,41 @@
 import { NextPage } from 'next'
 import BlogCard from './components/BlogCard'
 interface Props {
-  name: string
+  // blogPosts: []
 }
+
+interface BlogPostInterface {
+  title: string
+  description: string
+}
+
+const blogPosts = [
+  {
+    title: 'this is title',
+    description:
+      'this is description for our blog post to see a resulout of styling',
+  },
+  {
+    title: 'this is title',
+    description:
+      'this is description for our blog post to see a resulout of styling',
+  },
+  {
+    title: 'this is title',
+    description:
+      'this is description for our blog post to see a resulout of styling',
+  },
+] as BlogPostInterface[]
 
 const Blogs: NextPage<Props> = () => {
   return (
-    <section className="bg-green-100 max-w-3xl mx-auto p-5">
-      <BlogCard
-        title="here is our title"
-        description="loremloremloremloremloremlorem"
-      />
+    <section
+      className="mx-auto max-w-3xl space-y-3
+       p-5"
+    >
+      {blogPosts.map((item: BlogPostInterface) => (
+        <BlogCard title={item.title} description={item.description} />
+      ))}
     </section>
   )
 }

@@ -7,9 +7,11 @@ interface Props {
 
 const BlogCard: FC<Props> = ({ title, description }): JSX.Element => {
   return (
-    <div className="bg-green-100 p-2 rounded">
-      <h1 className="text-gray-900 text-3xl font-semibold">{title}</h1>
-      <p className="text-gray-500 text->xl">{description}</p>
+    <div className="flex flex-col items-start justify-start rounded bg-green-100 p-8 pt-2">
+      <h1 className="m-1 text-3xl font-semibold uppercase text-gray-900">
+        {title}
+      </h1>
+      <p className="text->xl text-gray-500">{description}</p>
     </div>
   )
 }
