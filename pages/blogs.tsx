@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import { useEffect, useState } from 'react'
+import { apiUrl } from './api/utils/api'
 import BlogCard from './components/BlogCard'
 
 interface Props {
@@ -16,7 +16,7 @@ interface ResponseInterface {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch('http://localhost:3000/api/posts')
+  const res = await fetch(`${apiUrl}/posts`)
   const data = await res.json()
   const { posts } = data as ResponseInterface
 
