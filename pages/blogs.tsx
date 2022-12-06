@@ -1,40 +1,44 @@
 import { NextPage } from 'next'
+import { useEffect, useState } from 'react'
 import BlogCard from './components/BlogCard'
-interface Props {
-  // blogPosts: []
-}
 
+interface Props {
+  posts: BlogPostInterface[]
+}
 interface BlogPostInterface {
   title: string
+  slug: string
+  meta: string
   description: string
 }
+interface ResponseInterface {
+  posts: BlogPostInterface[]
+}
 
-const blogPosts = [
-  {
-    title: 'this is title',
-    description:
-      'this is description for our blog post to see a resulout of styling',
-  },
-  {
-    title: 'this is title',
-    description:
-      'this is description for our blog post to see a resulout of styling',
-  },
-  {
-    title: 'this is title',
-    description:
-      'this is description for our blog post to see a resulout of styling',
-  },
-] as BlogPostInterface[]
+export const getStaticProps = async () => {
+  const res = await fetch('http://localhost:3000/api/posts')
+  const data = await res.json()
+  const { posts } = data as ResponseInterface
 
-const Blogs: NextPage<Props> = () => {
+  return {
+    props: {
+      posts,
+    },
+  }
+}
+
+const Blogs: NextPage<Props> = ({ posts }) => {
   return (
     <section
       className="mx-auto max-w-3xl space-y-3
        p-5"
     >
-      {blogPosts.map((item: BlogPostInterface) => (
-        <BlogCard title={item.title} description={item.description} />
+      {posts.map((item: BlogPostInterface) => (
+        <BlogCard
+          key={item.slug}
+          title={item.slug}
+          description={item.meta}
+        />
       ))}
     </section>
   )
