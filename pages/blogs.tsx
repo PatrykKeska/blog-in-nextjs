@@ -1,11 +1,11 @@
-import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import {
   BlogPostInterface,
   Props,
   ResponseInterface,
 } from '../types/Blogs/blogs.interface'
 import { apiUrl } from './api/utils/api_url'
-import BlogCard from './components/BlogCard'
+import BlogCard from '../components/BlogCard'
 
 export const getStaticProps: GetStaticProps<ResponseInterface> = async () => {
   const res = await fetch(`${apiUrl}/posts`)
