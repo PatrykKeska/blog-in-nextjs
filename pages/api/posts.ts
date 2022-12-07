@@ -1,3 +1,4 @@
+import { getPostsFsDetails } from './utils/getPostsDir';
 import { NextApiHandler } from "next"
 import path from "path";
 import {promises as fs, readFileSync } from 'fs'
@@ -9,13 +10,11 @@ const pathToPostFiles = path.join(process.cwd(), 'posts/');
 
 
 const readPostInfo =async ()=> {
-    const dirToRead = await fs.readdir(pathToPostFiles);    
+    const { dirToRead, pathToPostFiles } = await getPostsFsDetails()
     const allPosts = dirToRead.map((post)=> {
         const eachFile = readFileSync(pathToPostFiles + post, 'utf-8')
         return matter(eachFile).data        
     })
-    
-    
     return allPosts
     
 }
