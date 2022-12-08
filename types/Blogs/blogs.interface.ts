@@ -5,7 +5,6 @@ import { InferGetStaticPropsType } from 'next';
     title: string
     slug: string
     meta: string
-    description: string
   }
 
   interface props {
