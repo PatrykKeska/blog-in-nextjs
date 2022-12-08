@@ -1,9 +1,4 @@
-import {
-  GetStaticPaths,
-  GetStaticProps,
-  InferGetStaticPropsType,
-  NextPage,
-} from 'next'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import matter from 'gray-matter'
 import { getPostsFsDetails, readPostFile } from '../api/utils/getPostsDir'
@@ -13,13 +8,17 @@ import {
   Post,
   Props,
 } from '../../types/Blogs/postSlug.interface'
+import { serialize } from 'next-mdx-remote/serialize'
+import { MDXRemote } from 'next-mdx-remote'
 
 const SinglePage: NextPage<Props> = ({ content, title }) => {
   const router = useRouter()
   return (
-    <div>
-      <h2>{title}</h2>
-      <p>{content}</p>
+    <div className="max-w-3xl m-auto my-10 p-10 pb-20">
+      <article className="prose prose-slate">
+        <h1 className="font-semibold text-3xl uppercase">{title}</h1>
+        <MDXRemote {...content} />
+      </article>
     </div>
   )
 }
@@ -42,11 +41,12 @@ export const getStaticProps: GetStaticProps<Post> = async (context) => {
   const { postSlug } = params
   const file = await readPostFile(postSlug)
   const { content, data } = matter(file)
+  const source = await serialize(content)
 
   return {
     props: {
       title: data.title,
-      content,
+      content: source,
     },
   }
 }
