@@ -1,4 +1,4 @@
-import { getStaticProps } from './../../pages/blogs';
+import { getStaticProps } from '../../pages/blogs';
 import { InferGetStaticPropsType } from 'next';
 
   export interface BlogPostInterface {
