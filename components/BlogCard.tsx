@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { FC } from 'react'
-import { apiBlogPosts } from '../pages/api/utils/api_url'
+import { apiBlogPosts } from '../utils/api_url'
 
 interface Props {
   title: string

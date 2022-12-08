@@ -5,7 +5,7 @@ import {
   ResponseInterface,
 } from '../../types/Blogs/blogs.interface'
 import BlogCard from '../../components/BlogCard'
-import { fetchPosts } from '../api/utils/fetchPosts'
+import { fetchPosts } from '../../utils/fetchPosts'
 
 export const getStaticProps: GetStaticProps<ResponseInterface> = async () => {
   const posts = await fetchPosts()

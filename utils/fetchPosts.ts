@@ -1,4 +1,4 @@
-import { ResponseInterface } from "../../../types/Blogs/blogs.interface"
+import { ResponseInterface } from "../types/Blogs/blogs.interface"
 import { apiUrl } from "./api_url"
 
 export const fetchPosts =async ()=>{
