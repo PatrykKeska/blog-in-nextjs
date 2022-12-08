@@ -4,7 +4,6 @@ import {
   Props,
   ResponseInterface,
 } from '../../types/Blogs/blogs.interface'
-import { apiUrl } from '../api/utils/api_url'
 import BlogCard from '../../components/BlogCard'
 import { fetchPosts } from '../api/utils/fetchPosts'
 
