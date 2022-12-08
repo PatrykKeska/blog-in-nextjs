@@ -9,6 +9,7 @@ import { fetchPosts } from '../../utils/fetchPosts'
 
 export const getStaticProps: GetStaticProps<ResponseInterface> = async () => {
   const posts = await fetchPosts()
+
   return {
     props: {
       posts,
