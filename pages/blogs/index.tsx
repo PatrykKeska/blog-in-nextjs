@@ -6,12 +6,10 @@ import {
 } from '../../types/Blogs/blogs.interface'
 import { apiUrl } from '../api/utils/api_url'
 import BlogCard from '../../components/BlogCard'
+import { fetchPosts } from '../api/utils/fetchPosts'
 
 export const getStaticProps: GetStaticProps<ResponseInterface> = async () => {
-  const res = await fetch(`${apiUrl}/posts`)
-  const data: ResponseInterface = await res.json()
-  const { posts } = data
-
+  const posts = await fetchPosts()
   return {
     props: {
       posts,
